@@ -1,11 +1,39 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import MessageApp from '../components/MessageApp.svelte';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+let messagesData;
+try {
+  messagesData = await import('../data/processed-messages.json').then(m => m.default);
+} catch (error) {
+  messagesData = {
+    messages: {},
+    dates: [],
+    messagesWithNumbers: {}
+  };
+}
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Message Display App">
+  <div style="max-width: 80rem; margin: 0 auto;">
+    <h1 style="font-size: 1.875rem; font-weight: 700; text-align: center; margin-bottom: 2rem; color: #1f2937;">
+      Good Morning Messages
+    </h1>
+    
+    {messagesData.dates.length > 0 ? (
+      <MessageApp client:load messagesData={messagesData} />
+    ) : (
+      <div style="text-align: center; padding: 3rem 0;">
+        <div style="background: white; border-radius: 0.5rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); padding: 2rem; max-width: 28rem; margin: 0 auto;">
+          <h2 style="font-size: 1.25rem; font-weight: 600; color: #1f2937; margin-bottom: 1rem;">No Messages Found</h2>
+          <p style="color: #4b5563; margin-bottom: 1rem;">
+            Please place your raw messages file at <code style="background: #f3f4f6; padding: 0.25rem 0.5rem; border-radius: 0.25rem;">src/data/raw-messages.txt</code>
+          </p>
+          <p style="color: #4b5563;">
+            Then run: <code style="background: #f3f4f6; padding: 0.25rem 0.5rem; border-radius: 0.25rem;">npm run process-messages</code>
+          </p>
+        </div>
+      </div>
+    )}
+  </div>
 </Layout>
