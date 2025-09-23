@@ -184,7 +184,7 @@
           type="text"
           bind:value={newComment}
           on:keypress={handleKeyPress}
-          placeholder="Share your guess..."
+          placeholder="What were we talking about?"
           class="comment-input {isMobile ? 'mobile' : ''}"
         />
         <button
@@ -279,10 +279,11 @@
   }
   
   .messages-container {
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
     border-radius: 0.5rem;
-    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-    border: 2px solid #f3f4f6;
     height: 24rem;
     padding: 1rem;
     overflow-y: auto;
@@ -292,6 +293,8 @@
   }
   
   .messages-container.mobile {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
     flex: 1;
     height: auto;
     border-radius: 1rem;
@@ -341,13 +344,15 @@
   }
   
   .bubble-me {
-    background: #007AFF;
+    background: linear-gradient(135deg, var(--bubble-me) 0%, #0056CC 100%);
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2);
     color: white;
     border-bottom-right-radius: 0.375rem;
   }
   
   .bubble-them {
-    background: #E9E9EB;
+    background: linear-gradient(135deg, var(--bubble-them) 0%, #d1d5db 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     color: #000000;
     border-bottom-left-radius: 0.375rem;
   }
@@ -494,29 +499,36 @@
   
   .comment-input {
     flex: 1;
-    background: white;
-    border: 1px solid #d1d5db;
+    background: rgba(255, 255, 255, .9);
+    backdrop-filter: blur(8px);
+    border-color: var(--primary-blue);
+    border: 2px solid rgba(229, 231, 235, 0.5);
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
   }
   
   .comment-input.mobile {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(229, 231, 235, 0.5);
     border-radius: 1.5rem;
     padding: 0.75rem 1.25rem;
     font-size: 1rem;
-    border: 2px solid #e5e7eb;
   }
   
   .comment-input:focus {
+    background: rgba(255, 255, 255, 1);
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
     outline: 2px solid transparent;
     outline-offset: 2px;
-    border-color: #007AFF;
     box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.2);
   }
   
   .add-btn {
-    background: #007AFF;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-hover) 100%);
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
     color: white;
     border: none;
     border-radius: 0.5rem;
@@ -528,6 +540,7 @@
   }
   
   .add-btn.mobile {
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
     border-radius: 1.5rem;
     padding: 0.75rem 1rem;
     font-size: 1.25rem;

@@ -236,7 +236,9 @@
   }
   
   .random-btn {
-    background: #007AFF;
+    background: var(--primary-blue);
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-hover) 100%);
+    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
     color: white;
     border: none;
     border-radius: 0.5rem;
@@ -247,7 +249,9 @@
   }
   
   .random-btn:hover:not(:disabled) {
-    background: #0056CC;
+    background: var(--primary-blue-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
   }
   
   .random-btn:disabled {

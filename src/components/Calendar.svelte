@@ -26,6 +26,7 @@
     [new Date().getFullYear()];
   
   $: calendarDays = getCalendarDays(currentYear, currentMonth);
+  $: selectedDate;
   
   function getCalendarDays(year, month) {
     const firstDay = new Date(year, month, 1);
@@ -47,13 +48,11 @@
       
       const hasMessages = messagesData?.messages[dateStr];
       const emojis = hasMessages ? getEmojisForDate(dateStr) : [];
-      
       days.push({
         day,
         dateStr,
         hasMessages: !!hasMessages,
         emojis,
-        isSelected: dateStr === selectedDate
       });
     }
     
@@ -219,7 +218,7 @@
       <div class="day-cell {isMobile ? 'mobile' : ''}">
         {#if dayData}
           <button
-            class="day-button {dayData.hasMessages ? 'has-messages' : 'no-messages'} {dayData.isSelected ? 'selected' : ''} {isMobile ? 'mobile' : ''}"
+            class="day-button {dayData.hasMessages ? 'has-messages' : 'no-messages'} {dayData.dateStr === selectedDate ? 'selected' : ''} {isMobile ? 'mobile' : ''}"
             on:click={() => selectDate(dayData.dateStr)}
             disabled={!dayData.hasMessages}
           >
@@ -240,9 +239,11 @@
 
 <style>
   .calendar-container {
-    background: white;
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     border-radius: 0.5rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     padding: 1.5rem;
     user-select: none;
   }
@@ -251,7 +252,8 @@
     padding: 0.5rem;
     border-radius: 0;
     box-shadow: none;
-    background: #f9fafb;
+    background: rgba(249, 250, 251, 0.8);
+    backdrop-filter: blur(8px);
     height: 100vh; /* Full height for better swipe area */
     display: flex;
     flex-direction: column;
@@ -414,9 +416,9 @@
   }
   
   .day-button.selected {
-    background: #dbeafe !important;
-    border: 2px solid #3b82f6 !important;
-    box-shadow: 0 0 0 1px #3b82f6;
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%) !important;
+    border: 2px solid var(--primary-blue) !important;
+    box-shadow: 0 0 0 2px var(--primary-blue), 0 4px 12px rgba(59, 130, 246, 0.3);
   }
   
   .day-number {
@@ -433,8 +435,8 @@
   }
   
   .day-number.with-circle {
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid #3b82f6;
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, rgba(59, 130, 246, 0.2) 100%);
+    border: 1px solid var(--primary-blue);
     border-radius: 50%;
     width: 1.5rem;
     height: 1.5rem;

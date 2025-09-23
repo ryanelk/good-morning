@@ -31,11 +31,135 @@ const { title } = Astro.props;
   }
   
   body {
-    font-family: system-ui, -apple-system, sans-serif;
-    background-color: #f9fafb;
-    min-height: 100vh;
-  }
+	font-family: system-ui, -apple-system, sans-serif;
+	/* Replace this line: background-color: #f9fafb; */
+	/* With gradient backgrounds: */
+	
+	/* Option 1: Soft Blue Gradient */
+	/* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+	
+	/* Option 2: iOS-style Gradient */
+	/* background: linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #a29bfe 100%); */
+	
+	/* Option 3: Sunset Gradient */
+	/* background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%); */
+	
+	/* Option 4: Purple/Pink Gradient */
+	/* background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); */
+	
+	/* Option 5: Morning Gradient (appropriate for "good morning" theme!) */
+	/* background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #a8edea 100%); */
+
+	/* Option 6: Random */
+	background:
+		radial-gradient(
+		73% 101% at 95.54% 95.05%,
+		rgba(255, 156, 65, 0.78) 0%,
+		rgba(255, 168, 88, 0) 100%
+		),
+		linear-gradient(
+		197deg,
+		rgba(255, 240, 164, 1) 0%,
+		rgba(255, 240, 164, 0) 100%
+		),
+		radial-gradient(
+		59% 74% at 10% -10%,
+		rgba(49, 132, 255, 0.8) 0%,
+		rgba(56, 75, 246, 0.21) 52%,
+		rgba(62, 246, 246, 0) 100%
+		),
+		linear-gradient(
+		143deg,
+		rgba(142, 187, 230, 1) 5%,
+		rgba(238, 43, 183, 0.33) 58%,
+		rgba(246, 62, 106, 0) 85%
+		),
+		linear-gradient(
+		45deg,
+		rgba(173, 147, 69, 1) 12%,
+		rgba(52, 171, 31, 1) 84%
+		);
+	background-blend-mode: , , , , normal;
+	
+	min-height: 100vh;
+	background-attachment: fixed; /* Keeps gradient fixed during scroll */
+	}
+
+  :root {
+	/* Primary Brand Colors */
+	--primary-blue: #007AFF;
+	--primary-blue-hover: #0056CC;
+	--primary-blue-light: rgba(0, 122, 255, 0.1);
+	
+	/* Message Bubble Colors */
+	--bubble-me: #007AFF;
+	--bubble-them: #E9E9EB;
+	--bubble-them-text: #000000;
+	
+	/* Background Colors */
+	--bg-primary: #f9fafb;
+	--bg-secondary: #ffffff;
+	--bg-tertiary: #f3f4f6;
+	
+	/* Text Colors */
+	--text-primary: #1f2937;
+	--text-secondary: #4b5563;
+	--text-tertiary: #6b7280;
+	--text-disabled: #9ca3af;
+	
+	/* Border Colors */
+	--border-light: #e5e7eb;
+	--border-medium: #d1d5db;
+	--border-primary: #3b82f6;
+	
+	/* Shadow Colors */
+	--shadow-light: rgba(0, 0, 0, 0.05);
+	--shadow-medium: rgba(0, 0, 0, 0.1);
+	--shadow-dark: rgba(0, 0, 0, 0.25);
+	}
+
+/* @media (prefers-color-scheme: dark) { */
+  /* :root {
+    --bg-primary: #1f2937;
+    --bg-secondary: #374151;
+    --bg-tertiary: #4b5563;
+    --text-primary: #f9fafb;
+    --text-secondary: #e5e7eb;
+    --text-tertiary: #d1d5db;
+  } */
   
+  /* body { */
+    /* Dark mode gradient */
+    /* background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); */
+  /* } */
+  
+  /* .calendar-container,
+  .messages-container {
+    background: rgba(31, 41, 55, 0.9);
+    color: var(--text-primary);
+  } */
+/* } */
+  .calendar-container,
+	.messages-container,
+	.random-btn,
+	.day-button,
+	.speech-bubble {
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+.day-button.has-messages:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.speech-bubble {
+  transition: transform 0.2s ease;
+}
+
+.speech-bubble:hover {
+  transform: scale(1.01);
+}
+
   main {
     max-width: 1200px;
     margin: 0 auto;
