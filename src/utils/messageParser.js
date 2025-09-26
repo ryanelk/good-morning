@@ -125,7 +125,8 @@ function containsGoodMorning(content) {
 function createMessageObject(messageData) {
   return {
     ts: messageData.timestamp,
-    msg: messageData.content.replace(/\n/, ' '), // Replace first newline with spaces
+    msg: messageData.content, // Replace first newline with spaces
+    // msg: messageData.content.replace(/\n/, ' '), // Replace first newline with spaces
     react: messageData.tapbacks.length > 0 ? convertTapbacksToEmojis(messageData.tapbacks) : null,
     sender: messageData.sender
   };

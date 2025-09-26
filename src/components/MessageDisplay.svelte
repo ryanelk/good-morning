@@ -364,7 +364,7 @@
     font-size: 0.875rem;
     line-height: 1.5;
     margin: 0;
-    /* white-space: pre-line; */
+    white-space: pre-line;
   }
   
   .message-text.mobile {
