@@ -76,7 +76,8 @@
       'gud morning',
       'good mrning',
       'mornin',
-      'gm'
+      'gm',
+      'happy 28th birthday!!'
     ];
     
     goodMorningVariants.forEach(variant => {
@@ -248,17 +249,6 @@
     user-select: none;
   }
   
-  .calendar-container.mobile {
-    padding: 0.5rem;
-    border-radius: 0;
-    box-shadow: none;
-    background: rgba(249, 250, 251, 0.8);
-    backdrop-filter: blur(8px);
-    height: 100vh; /* Full height for better swipe area */
-    display: flex;
-    flex-direction: column;
-  }
-  
   .calendar-header {
     display: flex;
     justify-content: space-between;
@@ -333,6 +323,7 @@
     gap: 0.125rem; /* Smaller gap for mobile */
     flex: 1; /* Take remaining space */
     display: grid;
+    max-width: fit-content;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: auto repeat(6, 1fr); /* Auto for headers, equal rows for dates */
     align-content: stretch;
@@ -487,15 +478,15 @@
   
   @media (max-width: 640px) {
     .calendar-container.mobile {
-      height: calc(100vh - 5rem); /* Account for header and padding */
+      /* height: calc(100vh - 5rem); Account for header and padding */
     }
 
     .calendar-grid.mobile {
-      max-height: calc(100vh - 12rem); /* Account for header, selectors, and swipe indicator */
+      /* max-height: calc(100vh - 12rem); Account for header, selectors, and swipe indicator */
     }
     
     .day-cell.mobile {
-      min-height: calc((100vh - 15rem) / 6); /* Dynamically size based on available space */
+      /* min-height: calc((100vh - 15rem) / 6); Dynamically size based on available space */
     }
     
     .emoji.mobile {

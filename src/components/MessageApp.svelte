@@ -8,7 +8,38 @@
     dates: [],
     messagesWithNumbers: {}
   };
-  
+
+  // saved bday msg
+  // "2025-09-26": {
+  //     "messageNumber": 2025,
+  //     "messages": [
+  //       {
+  //         "ts": 1757347679000,
+  //         "msg": "happy 28th birthday!! 🎂💖",
+  //         "react": "",
+  //         "sender": "ry"
+  //       },
+  //       {
+  //         "ts": 1757347679001,
+  //         "msg": "I've been thinking about all the photos, messages, and memories we've made in our time together. We've accumulated so much, it's almost overwhelming!",
+  //         "react": "",
+  //         "sender": "ry"
+  //       },
+  //       {
+  //         "ts": 1757347679002,
+  //         "msg": "so here's a fun way to look back on our current legacy, which I see as only the start of our long journey together",
+  //         "react": "",
+  //         "sender": "ry"
+  //       },
+  //       {
+  //         "ts": 1757347679003,
+  //         "msg": "to many more \"good mornings\", love ryan",
+  //         "react": "",
+  //         "sender": "ry"
+  //       }
+  //     ]
+  //   }
+
   let selectedDate = null;
   let currentMonth = new Date().getMonth();
   let currentYear = new Date().getFullYear();
@@ -20,7 +51,7 @@
     mounted = true;
     checkIfMobile();
     window.addEventListener('resize', checkIfMobile);
-    
+    console.log(messagesData)
     if (messagesData?.dates?.length > 0) {
       selectedDate = messagesData.dates[messagesData.dates.length - 1];
       const date = new Date(selectedDate);
@@ -305,14 +336,14 @@
   
   .mobile-header {
     padding: 1rem;
-    background: white;
-    border-bottom: 1px solid #e5e7eb;
+    /* background: white; */
+    /* border-bottom: 1px solid #e5e7eb; */
   }
   
   .mobile-view {
     flex: 1;
     overflow: hidden;
-    background: #f9fafb;
+    /* background: #f9fafb; */
   }
   
   .calendar-view {

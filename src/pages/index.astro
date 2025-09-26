@@ -4,7 +4,8 @@ import MessageApp from '../components/MessageApp.svelte';
 
 let messagesData;
 try {
-  messagesData = await import('../data/processed-messages.json').then(m => m.default);
+  messagesData = await import('../data/processed-messages-bday.json').then(m => m.default);
+  // insert birthday message here
 } catch (error) {
   messagesData = {
     messages: {},
@@ -14,10 +15,10 @@ try {
 }
 ---
 
-<Layout title="GOOD MORNINGS">
+<Layout title="good mornings">
   <div style="max-width: 80rem; margin: 0 auto;">
-    <h1 style="font-size: 1.875rem; font-weight: 700; text-align: center; margin-bottom: 2rem; color: #1f2937;">
-      Good Mornings
+    <h1 class="title" style="font-size: 3.875rem; font-weight: 700; text-align: center; margin-bottom: 2rem; color: #4b4726;">
+      good mornings
     </h1>
     
     {messagesData.dates.length > 0 ? (
@@ -25,7 +26,7 @@ try {
     ) : (
       <div style="text-align: center; padding: 3rem 0;">
         <div style="background: white; border-radius: 0.5rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); padding: 2rem; max-width: 28rem; margin: 0 auto;">
-          <h2 style="font-size: 1.25rem; font-weight: 600; color: #1f2937; margin-bottom: 1rem;">No Messages Found</h2>
+          <h2 style="font-size: 1.25rem; font-weight: 600; color: #4b4726; margin-bottom: 1rem;">No Messages Found</h2>
           <p style="color: #4b5563; margin-bottom: 1rem;">
             Please place your raw messages file at <code style="background: #f3f4f6; padding: 0.25rem 0.5rem; border-radius: 0.25rem;">src/data/raw-messages.txt</code>
           </p>
@@ -37,3 +38,11 @@ try {
     )}
   </div>
 </Layout>
+
+<style>
+  .title {
+    font-family: "Coiny", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+</style>

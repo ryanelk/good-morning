@@ -22,10 +22,10 @@
   $: comments = commentsStorage[dateKey] || [];
   
   function addComment() {
-    if (newComment.trim()) {
+    if (newComment) {
       const comment = {
         id: Date.now(),
-        text: newComment.trim(),
+        text: newComment,
         timestamp: new Date().toLocaleString()
       };
       
@@ -100,11 +100,11 @@
     isSwiping = false;
   }
   
-  $: if (messagesContainer && messages) {
-    setTimeout(() => {
-      messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    }, 10);
-  }
+  // $: if (messagesContainer && messages) {
+  //   setTimeout(() => {
+  //     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  //   }, 10);
+  // }
 </script>
 
 <div class="message-display {isMobile ? 'mobile' : ''}"
@@ -115,16 +115,18 @@
   
   <div class="message-header {isMobile ? 'mobile' : ''}">
     <h2 class="message-number {isMobile ? 'mobile' : ''}">#{messageNumber}</h2>
-    <button 
+    <div 
       class="message-date {isMobile ? 'mobile clickable' : ''}" 
       on:click={handleDateClick}
       disabled={!isMobile}
-    >
-      {formatDate(date)}
+      >
+      <span>
+        {formatDate(date)}
+      </span>
       {#if isMobile}
-        <span class="back-indicator">← Back to Calendar</span>
+      <span class="back-indicator">← Back to Calendar</span>
       {/if}
-    </button>
+    </div>
   </div>
   
   {#if isMobile}
@@ -189,7 +191,7 @@
         />
         <button
           on:click={addComment}
-          disabled={!newComment.trim()}
+          disabled={!newComment}
           class="add-btn {isMobile ? 'mobile' : ''}"
         >
           ↵
@@ -212,6 +214,7 @@
     gap: 0.5rem;
     padding: 1rem;
     background: #f9fafb;
+    border-radius: 1rem;
   }
   
   .message-header {
@@ -228,7 +231,7 @@
   .message-number {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #1f2937;
+    color: #4b4726;
     margin: 0 0 0.5rem 0;
   }
   
@@ -361,6 +364,7 @@
     font-size: 0.875rem;
     line-height: 1.5;
     margin: 0;
+    /* white-space: pre-line; */
   }
   
   .message-text.mobile {
@@ -477,9 +481,10 @@
   }
   
   .comment-text {
-    color: #1f2937;
+    color: #4b4726;
     font-size: 0.875rem;
     margin: 0 0 0.25rem 0;
+    white-space: pre-line;
   }
   
   .comment-time {
